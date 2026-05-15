@@ -1,0 +1,28 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "California State Portal"
+        url: "https://www.ca.gov/"
+      }
+      description: "CA.gov serves as the official website for the State of California, providing access to various government services and resources for residents and visitors. Users can find information related to state departments, disaster assistance, and popular services like obtaining a driver's license or a birth certificate."
+      license: {
+        name: "State of California"
+        url: "https://www.ca.gov/"
+      }
+      servers: [
+        {
+          description: "California State Portal Production Server"
+          url: "https://www.ca.gov"
+        }
+      ]
+      title: "California State Portal API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

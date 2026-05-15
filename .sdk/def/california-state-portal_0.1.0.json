@@ -1,0 +1,225 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "California State Portal API",
+    "description": "CA.gov serves as the official website for the State of California, providing access to various government services and resources for residents and visitors. Users can find information related to state departments, disaster assistance, and popular services like obtaining a driver's license or a birth certificate.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "California State Portal",
+      "url": "https://www.ca.gov/"
+    },
+    "license": {
+      "name": "State of California",
+      "url": "https://www.ca.gov/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://www.ca.gov",
+      "description": "California State Portal Production Server"
+    }
+  ],
+  "paths": {
+    "/api/services": {
+      "get": {
+        "summary": "Get government services",
+        "description": "Retrieve information about available California government services and resources including DMV services, birth certificates, business licenses, tax refunds, and other state services.",
+        "operationId": "getServices",
+        "tags": [
+          "Services"
+        ],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Filter services by category (e.g., DMV/Auto, Personal records, Businesses, Jobs and unemployment, Social services, Taxes)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "DMV/Auto",
+                "Personal records",
+                "Businesses",
+                "Jobs and unemployment",
+                "Social services",
+                "Taxes"
+              ]
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search term to filter services",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "language",
+            "in": "query",
+            "description": "Language preference for service information",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "es",
+                "ko",
+                "tl",
+                "vi",
+                "zh"
+              ],
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with list of services",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "services": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Unique identifier for the service"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Name of the service"
+                          },
+                          "category": {
+                            "type": "string",
+                            "description": "Category of the service"
+                          },
+                          "description": {
+                            "type": "string",
+                            "description": "Detailed description of the service"
+                          },
+                          "url": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "URL to access the service"
+                          },
+                          "department": {
+                            "type": "string",
+                            "description": "State department responsible for the service"
+                          },
+                          "popular": {
+                            "type": "boolean",
+                            "description": "Indicates if this is a popular service"
+                          }
+                        }
+                      }
+                    },
+                    "total": {
+                      "type": "integer",
+                      "description": "Total number of services available"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Service": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the service"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the service"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category of the service"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of the service"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to access the service"
+          },
+          "department": {
+            "type": "string",
+            "description": "State department responsible for the service"
+          },
+          "popular": {
+            "type": "boolean",
+            "description": "Indicates if this is a popular service"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "category"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Error code"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "details": {
+            "type": "string",
+            "description": "Additional error details"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Services",
+      "description": "California government services and resources"
+    }
+  ]
+}
