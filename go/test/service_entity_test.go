@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/california-state-portal-sdk"
-	"github.com/voxgig-sdk/california-state-portal-sdk/core"
+	sdk "github.com/voxgig-sdk/california-state-portal-sdk/go"
+	"github.com/voxgig-sdk/california-state-portal-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/california-state-portal-sdk/go/utility/struct"
 )
 
 func TestServiceEntity(t *testing.T) {

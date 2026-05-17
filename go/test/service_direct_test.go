@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/california-state-portal-sdk"
-	"github.com/voxgig-sdk/california-state-portal-sdk/core"
+	sdk "github.com/voxgig-sdk/california-state-portal-sdk/go"
+	"github.com/voxgig-sdk/california-state-portal-sdk/go/core"
 )
 
 func TestServiceDirect(t *testing.T) {

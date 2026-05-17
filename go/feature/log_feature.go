@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/california-state-portal-sdk/core"
+	"github.com/voxgig-sdk/california-state-portal-sdk/go/core"
 )
 
 type LogFeature struct {

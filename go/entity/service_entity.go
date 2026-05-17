@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/california-state-portal-sdk/core"
+	"github.com/voxgig-sdk/california-state-portal-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/california-state-portal-sdk/go/utility/struct"
 )
 
 type ServiceEntity struct {
