@@ -92,7 +92,6 @@ def _service_basic_setup(extra):
         "CALIFORNIASTATEPORTAL_TEST_SERVICE_ENTID": idmap,
         "CALIFORNIASTATEPORTAL_TEST_LIVE": "FALSE",
         "CALIFORNIASTATEPORTAL_TEST_EXPLAIN": "FALSE",
-        "CALIFORNIASTATEPORTAL_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +102,6 @@ def _service_basic_setup(extra):
     if env.get("CALIFORNIASTATEPORTAL_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("CALIFORNIASTATEPORTAL_APIKEY"),
             },
             extra or {},
         ])

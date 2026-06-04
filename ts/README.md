@@ -17,9 +17,7 @@ loading a specific record.
 ```ts
 import { CaliforniaStatePortalSDK } from 'california-state-portal'
 
-const client = new CaliforniaStatePortalSDK({
-  apikey: process.env.CALIFORNIA-STATE-PORTAL_APIKEY,
-})
+const client = new CaliforniaStatePortalSDK({})
 ```
 
 ### 2. List services
@@ -84,7 +82,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new CaliforniaStatePortalSDK({ apikey: '...' })
+const client = new CaliforniaStatePortalSDK()
 const testClient = client.tester()
 ```
 
@@ -120,7 +118,6 @@ const logger = {
 }
 
 const client = new CaliforniaStatePortalSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -131,7 +128,6 @@ Create a `.env.local` file at the project root:
 
 ```
 CALIFORNIA-STATE-PORTAL_TEST_LIVE=TRUE
-CALIFORNIA-STATE-PORTAL_APIKEY=<your-key>
 ```
 
 Then run:
@@ -149,7 +145,6 @@ cd ts && npm test
 
 ```ts
 new CaliforniaStatePortalSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -160,7 +155,6 @@ new CaliforniaStatePortalSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
