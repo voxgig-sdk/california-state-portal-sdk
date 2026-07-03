@@ -10,7 +10,7 @@ The PHP SDK for the CaliforniaStatePortal API — an entity-oriented client usin
 
 ## Install
 ```bash
-composer require voxgig/california-state-portal-sdk
+composer require voxgig-sdk/california-state-portal
 ```
 
 

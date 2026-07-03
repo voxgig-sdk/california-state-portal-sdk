@@ -10,7 +10,7 @@ The TypeScript SDK for the CaliforniaStatePortal API — a type-safe, entity-ori
 
 ## Install
 ```bash
-npm install california-state-portal
+npm install @voxgig-sdk/california-state-portal
 ```
 ## Tutorial: your first API call
 

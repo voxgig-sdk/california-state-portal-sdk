@@ -10,7 +10,7 @@ The Python SDK for the CaliforniaStatePortal API — an entity-oriented client f
 
 ## Install
 ```bash
-pip install california-state-portal-sdk
+pip install voxgig-sdk-california-state-portal
 ```
 
 Or install from source:

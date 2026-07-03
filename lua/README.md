@@ -10,7 +10,7 @@ The Lua SDK for the CaliforniaStatePortal API — an entity-oriented client usin
 
 ## Install
 ```bash
-luarocks install california-state-portal-sdk
+luarocks install voxgig-sdk-california-state-portal
 ```
 
 If the module is not yet published, add the source directory to

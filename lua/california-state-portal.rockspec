@@ -8,12 +8,14 @@ source = {
   dir = "california-state-portal-sdk/lua"
 }
 description = {
-  summary = "CaliforniaStatePortal SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the California State Portal public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/california-state-portal-sdk",
+  issues_url = "https://github.com/voxgig-sdk/california-state-portal-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "california-state-portal" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

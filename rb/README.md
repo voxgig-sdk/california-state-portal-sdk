@@ -10,13 +10,13 @@ The Ruby SDK for the CaliforniaStatePortal API — an entity-oriented client usi
 
 ## Install
 ```bash
-gem install california-state-portal-sdk
+gem install voxgig-sdk-california-state-portal
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "california-state-portal-sdk"
+gem "voxgig-sdk-california-state-portal"
 ```
 
 Then run:
