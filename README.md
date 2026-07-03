@@ -1,16 +1,8 @@
 # CaliforniaStatePortal SDK
 
-Reach the State of California's main public portal at ca.gov for government services and resource links
+California State Portal API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About California State Portal API
-
-[CA.gov](https://www.ca.gov) is the official portal of the State of California. It links residents and visitors to state departments and common government tasks such as DMV/Real ID, birth certificates, tax refunds, traffic tickets, and business licences.
-
-This SDK targets the ca.gov web portal itself rather than a structured REST API. The only documented endpoint is a `GET` against the portal root (`https://www.ca.gov/`), which returns the HTML homepage. There are no published JSON endpoints, query parameters, or authentication requirements for the portal.
-
-For programmatic access to California government data, the portal links out to [data.ca.gov](https://data.ca.gov), the state's open data catalogue, which is a separate service from ca.gov itself.
 
 ## Try it
 
@@ -44,29 +36,31 @@ gem install california-state-portal-sdk
 luarocks install california-state-portal-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { CaliforniaStatePortalSDK } from 'california-state-portal'
 
-const client = new CaliforniaStatePortalSDK({})
+const client = new CaliforniaStatePortalSDK({
+  apikey: process.env.CALIFORNIA-STATE-PORTAL_APIKEY,
+})
 
 // List all services
 const services = await client.Service().list()
+console.log(services.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -96,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Service** | Represents the ca.gov portal as a single web service; the only documented call is `GET /` against `https://www.ca.gov`, which returns the homepage HTML listing state services and department links. | `/api/services` |
+| **Service** |  | `/api/services` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -106,12 +100,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from californiastateportal_sdk import CaliforniaStatePortalSDK
 
-client = CaliforniaStatePortalSDK({})
+client = CaliforniaStatePortalSDK({
+    "apikey": os.environ.get("CALIFORNIA-STATE-PORTAL_APIKEY"),
+})
 
 # List all services
-services, err = client.Service(None).list(None, None)
+services, err = client.Service().list()
+print(services)
 ```
 
 ### PHP
@@ -120,10 +118,13 @@ services, err = client.Service(None).list(None, None)
 <?php
 require_once 'californiastateportal_sdk.php';
 
-$client = new CaliforniaStatePortalSDK([]);
+$client = new CaliforniaStatePortalSDK([
+    "apikey" => getenv("CALIFORNIA-STATE-PORTAL_APIKEY"),
+]);
 
 // List all services
-[$services, $err] = $client->Service(null)->list(null, null);
+[$services, $err] = $client->Service()->list();
+print_r($services);
 ```
 
 ### Golang
@@ -131,10 +132,13 @@ $client = new CaliforniaStatePortalSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/california-state-portal-sdk/go"
 
-client := sdk.NewCaliforniaStatePortalSDK(map[string]any{})
+client := sdk.NewCaliforniaStatePortalSDK(map[string]any{
+    "apikey": os.Getenv("CALIFORNIA-STATE-PORTAL_APIKEY"),
+})
 
 // List all services
 services, err := client.Service(nil).List(nil, nil)
+fmt.Println(services)
 ```
 
 ### Ruby
@@ -142,10 +146,13 @@ services, err := client.Service(nil).List(nil, nil)
 ```ruby
 require_relative "CaliforniaStatePortal_sdk"
 
-client = CaliforniaStatePortalSDK.new({})
+client = CaliforniaStatePortalSDK.new({
+  "apikey" => ENV["CALIFORNIA-STATE-PORTAL_APIKEY"],
+})
 
 # List all services
-services, err = client.Service(nil).list(nil, nil)
+services, err = client.Service().list
+puts services
 ```
 
 ### Lua
@@ -153,10 +160,13 @@ services, err = client.Service(nil).list(nil, nil)
 ```lua
 local sdk = require("california-state-portal_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("CALIFORNIA-STATE-PORTAL_APIKEY"),
+})
 
 -- List all services
-local services, err = client:Service(nil):list(nil, nil)
+local services, err = client:Service():list()
+print(services)
 ```
 
 ## Unit testing in offline mode
@@ -175,25 +185,21 @@ const result = await client.Service().load({ id: 'test01' })
 ### Python
 
 ```python
-client = CaliforniaStatePortalSDK.test(None, None)
-result, err = client.Service(None).load(
-    {"id": "test01"}, None
-)
+client = CaliforniaStatePortalSDK.test()
+result, err = client.Service().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = CaliforniaStatePortalSDK::test(null, null);
-[$result, $err] = $client->Service(null)->load(
-    ["id" => "test01"], null
-);
+$client = CaliforniaStatePortalSDK::test();
+[$result, $err] = $client->Service()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Service(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -202,19 +208,15 @@ result, err := client.Service(nil).Load(
 ### Ruby
 
 ```ruby
-client = CaliforniaStatePortalSDK.test(nil, nil)
-result, err = client.Service(nil).load(
-  { "id" => "test01" }, nil
-)
+client = CaliforniaStatePortalSDK.test
+result, err = client.Service().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Service(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Service():load({ id = "test01" })
 ```
 
 ## How it works
@@ -318,14 +320,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the California State Portal API
-
-- Upstream: [https://www.ca.gov](https://www.ca.gov)
-
-- Content is published by the State of California on its official ca.gov portal.
-- ca.gov is a public-facing website rather than a documented REST API, so no formal API terms or licence are published.
-- Respect any notices on individual department sites and the State of California's terms of use when reusing content.
 
 ---
 

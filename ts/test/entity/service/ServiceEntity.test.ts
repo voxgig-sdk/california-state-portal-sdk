@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'CALIFORNIA_STATE_PORTAL_TEST_SERVICE_ENTID': idmap,
     'CALIFORNIA_STATE_PORTAL_TEST_LIVE': 'FALSE',
     'CALIFORNIA_STATE_PORTAL_TEST_EXPLAIN': 'FALSE',
+    'CALIFORNIA_STATE_PORTAL_APIKEY': 'NONE',
   })
 
   idmap = env['CALIFORNIA_STATE_PORTAL_TEST_SERVICE_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new CaliforniaStatePortalSDK(merge([
       {
+        apikey: env.CALIFORNIA_STATE_PORTAL_APIKEY,
       },
       extra
     ]))

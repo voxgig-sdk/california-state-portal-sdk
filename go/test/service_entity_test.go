@@ -119,6 +119,7 @@ func serviceBasicSetup(extra map[string]any) *entityTestSetup {
 		"CALIFORNIASTATEPORTAL_TEST_SERVICE_ENTID": idmap,
 		"CALIFORNIASTATEPORTAL_TEST_LIVE":      "FALSE",
 		"CALIFORNIASTATEPORTAL_TEST_EXPLAIN":   "FALSE",
+		"CALIFORNIASTATEPORTAL_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["CALIFORNIASTATEPORTAL_TEST_SERVICE_ENTID"])
@@ -129,6 +130,7 @@ func serviceBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["CALIFORNIASTATEPORTAL_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["CALIFORNIASTATEPORTAL_APIKEY"],
 			},
 			extra,
 		})

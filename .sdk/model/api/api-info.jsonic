@@ -21,22 +21,7 @@ main: {
       ]
       title: "California State Portal API"
       version: "1.0.0"
-      tagline: "Reach the State of California's main public portal at ca.gov for government services and resource links"
-      homepage: "https://www.ca.gov"
-      docs_url: "https://www.ca.gov"
-      license_short: "State of California — public government website"
-      license_md: `- Content is published by the State of California on its official ca.gov portal.
-- ca.gov is a public-facing website rather than a documented REST API, so no formal API terms or licence are published.
-- Respect any notices on individual department sites and the State of California's terms of use when reusing content.`
-      about_md: `[CA.gov](https://www.ca.gov) is the official portal of the State of California. It links residents and visitors to state departments and common government tasks such as DMV/Real ID, birth certificates, tax refunds, traffic tickets, and business licences.
-
-This SDK targets the ca.gov web portal itself rather than a structured REST API. The only documented endpoint is a \`GET\` against the portal root (\`https://www.ca.gov/\`), which returns the HTML homepage. There are no published JSON endpoints, query parameters, or authentication requirements for the portal.
-
-For programmatic access to California government data, the portal links out to [data.ca.gov](https://data.ca.gov), the state's open data catalogue, which is a separate service from ca.gov itself.`
-      entity_desc: {
-        service: "Represents the ca.gov portal as a single web service; the only documented call is `GET /` against `https://www.ca.gov`, which returns the homepage HTML listing state services and department links."
-      }
-      auth: false
     }
   }
 }
+

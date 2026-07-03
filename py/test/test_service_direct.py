@@ -61,12 +61,14 @@ def _service_direct_setup(mockres):
     env = runner.env_override({
         "CALIFORNIASTATEPORTAL_TEST_SERVICE_ENTID": {},
         "CALIFORNIASTATEPORTAL_TEST_LIVE": "FALSE",
+        "CALIFORNIASTATEPORTAL_APIKEY": "NONE",
     })
 
     live = env.get("CALIFORNIASTATEPORTAL_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("CALIFORNIASTATEPORTAL_APIKEY"),
         }
         client = CaliforniaStatePortalSDK(merged_opts)
         return {
