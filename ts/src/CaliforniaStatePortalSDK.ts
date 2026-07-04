@@ -204,14 +204,7 @@ class CaliforniaStatePortalSDK {
 
 
 
-  _service?: ServiceEntity
-
-  // Idiomatic facade: `client.service.list()` / `client.service.load({ id })`.
-  get service(): ServiceEntity {
-    return (this._service ??= new ServiceEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.service` instead. */
+  // Entity access: `client.Service().list()` / `client.Service().load({ id })`.
   Service(data?: any) {
     const self = this
     return new ServiceEntity(self,data)

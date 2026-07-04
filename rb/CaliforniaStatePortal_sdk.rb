@@ -208,13 +208,7 @@ class CaliforniaStatePortalSDK
   end
 
 
-  # Idiomatic facade: client.service.list / client.service.load({ "id" => ... })
-  def service
-    require_relative 'entity/service_entity'
-    @service ||= ServiceEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.service instead.
+  # Canonical facade: client.Service.list / client.Service.load({ "id" => ... })
   def Service(data = nil)
     require_relative 'entity/service_entity'
     ServiceEntity.new(self, data)

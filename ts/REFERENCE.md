@@ -109,7 +109,7 @@ Alias for `CaliforniaStatePortalSDK.test()`.
 ## ServiceEntity
 
 ```ts
-const service = client.service
+const service = client.Service()
 ```
 
 ### Fields
@@ -131,7 +131,7 @@ const service = client.service
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.service.list()
+const results = await client.Service().list()
 ```
 
 ### Common Methods

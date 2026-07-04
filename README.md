@@ -26,9 +26,11 @@ import { CaliforniaStatePortalSDK } from '@voxgig-sdk/california-state-portal'
 
 const client = new CaliforniaStatePortalSDK()
 
-// List all services
-const services = await client.service.list()
-console.log(services.data)
+// List all services (returns Service[])
+const services = await client.Service().list()
+for (const service of services) {
+  console.log(service)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -83,9 +85,10 @@ from californiastateportal_sdk import CaliforniaStatePortalSDK
 
 client = CaliforniaStatePortalSDK()
 
-# List all services
-services = client.service.list()
-print(services)
+# List all services (returns a list, raises on error)
+services = client.Service().list({})
+for service in services:
+    print(service)
 ```
 
 ### PHP
@@ -96,8 +99,8 @@ require_once 'californiastateportal_sdk.php';
 
 $client = new CaliforniaStatePortalSDK();
 
-// List all services (throws on error)
-$services = $client->service()->list();
+// List all services (returns an array; throws on error)
+$services = $client->Service()->list();
 print_r($services);
 ```
 
@@ -120,8 +123,8 @@ require_relative "CaliforniaStatePortal_sdk"
 
 client = CaliforniaStatePortalSDK.new
 
-# List all services
-services = client.service.list
+# List all services (returns an Array; raises on error)
+services = client.Service.list
 puts services
 ```
 
@@ -133,7 +136,7 @@ local sdk = require("california-state-portal_sdk")
 local client = sdk.new()
 
 -- List all services
-local services, err = client:service():list()
+local services, err = client:Service():list()
 print(services)
 ```
 
@@ -146,22 +149,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = CaliforniaStatePortalSDK.test()
-const result = await client.service.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const service = await client.Service().load({ id: 'test01' })
+// service is a bare Service populated with mock data
+console.log(service)
 ```
 
 ### Python
 
 ```python
 client = CaliforniaStatePortalSDK.test()
-result = client.service.load({"id": "test01"})
+service = client.Service().load({"id": "test01"})
+print(service)
 ```
 
 ### PHP
 
 ```php
-$client = CaliforniaStatePortalSDK::test();
-$result = $client->service()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = CaliforniaStatePortalSDK::test([
+    "entity" => ["service" => ["test01" => ["id" => "test01"]]],
+]);
+$service = $client->Service()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -176,15 +184,18 @@ result, err := client.Service(nil).Load(
 ### Ruby
 
 ```ruby
-client = CaliforniaStatePortalSDK.test
-result = client.service.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = CaliforniaStatePortalSDK.test({
+  "entity" => { "service" => { "test01" => { "id" => "test01" } } },
+})
+service = client.Service.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:service():load({ id = "test01" })
+local result, err = client:Service():load({ id = "test01" })
 ```
 
 ## How it works
@@ -232,6 +243,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

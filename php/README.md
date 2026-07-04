@@ -29,18 +29,16 @@ require_once 'californiastateportal_sdk.php';
 $client = new CaliforniaStatePortalSDK();
 ```
 
-### 2. List services
+### 2. List service records
 
 ```php
 try {
-    $result = $client->service()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Service records — iterate directly.
+    $services = $client->Service()->list();
+    foreach ($services as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = CaliforniaStatePortalSDK::test();
+$client = CaliforniaStatePortalSDK::test([
+    "entity" => ["service" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->service()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$service = $client->Service()->load(["id" => "test01"]);
+print_r($service);
 ```
 
 ### Use a custom fetch function
@@ -234,7 +236,7 @@ API path: `/api/services`
 
 ### Service
 
-Create an instance: `const service = client.service`
+Create an instance: `$service = $client->Service();`
 
 #### Operations
 
@@ -256,8 +258,9 @@ Create an instance: `const service = client.service`
 
 #### Example: List
 
-```ts
-const services = await client.service.list()
+```php
+// list() returns an array of Service records (throws on error).
+$services = $client->Service()->list();
 ```
 
 
@@ -332,7 +335,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$service = $client->service();
+$service = $client->Service();
 $service->load(["id" => "example_id"]);
 
 // $service->dataGet() now returns the loaded service data

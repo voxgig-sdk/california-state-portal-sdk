@@ -220,25 +220,15 @@ class CaliforniaStatePortalSDK:
         }
 
 
-    @property
-    def service(self):
-        """Idiomatic facade: client.service.list() / client.service.load({"id": ...})."""
-        from entity.service_entity import ServiceEntity
-        cached = getattr(self, "_service", None)
-        if cached is None:
-            cached = ServiceEntity(self, None)
-            self._service = cached
-        return cached
-
-    def Service(self, data=None):
-        # Deprecated: use client.service instead.
+    def Service(self, data=None) -> "ServiceEntity":
+        """Entity factory: client.Service().list({}) / client.Service().load({"id": ...})."""
         from entity.service_entity import ServiceEntity
         return ServiceEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "CaliforniaStatePortalSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class CaliforniaStatePortalSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.service_entity import ServiceEntity

@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## ServiceEntity
 
 ```python
-service = client.service
+service = client.Service()
 ```
 
 ### Fields
@@ -102,7 +102,9 @@ service = client.service
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.service.list({})
+results = client.Service().list({})
+for service in results:
+    print(service)
 ```
 
 ### Common Methods

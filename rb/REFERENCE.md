@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## ServiceEntity
 
 ```ruby
-service = client.service
+service = client.Service
 ```
 
 ### Fields
@@ -108,7 +108,7 @@ service = client.service
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.service.list(nil)
+results = client.Service.list(nil)
 ```
 
 ### Common Methods

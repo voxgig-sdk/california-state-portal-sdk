@@ -28,16 +28,14 @@ require_relative "CaliforniaStatePortal_sdk"
 client = CaliforniaStatePortalSDK.new
 ```
 
-### 2. List services
+### 2. List service records
 
 ```ruby
 begin
-  result = client.service.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Service records — iterate directly.
+  services = client.Service.list
+  services.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = CaliforniaStatePortalSDK.test
+client = CaliforniaStatePortalSDK.test({
+  "entity" => { "service" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.service.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+service = client.Service.load({ "id" => "test01" })
+puts service
 ```
 
 ### Use a custom fetch function
@@ -229,7 +231,7 @@ API path: `/api/services`
 
 ### Service
 
-Create an instance: `const service = client.service`
+Create an instance: `service = client.Service`
 
 #### Operations
 
@@ -251,8 +253,9 @@ Create an instance: `const service = client.service`
 
 #### Example: List
 
-```ts
-const services = await client.service.list()
+```ruby
+# list returns an Array of Service records (raises on error).
+services = client.Service.list
 ```
 
 
@@ -327,7 +330,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-service = client.service
+service = client.Service
 service.load({ "id" => "example_id" })
 
 # service.data_get now returns the loaded service data

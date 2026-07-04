@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## ServiceEntity
 
 ```php
-$service = $client->service();
+$service = $client->Service();
 ```
 
 ### Fields
@@ -107,7 +107,7 @@ $service = $client->service();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->service()->list([]);
+$results = $client->Service()->list([]);
 ```
 
 ### Common Methods

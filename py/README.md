@@ -31,14 +31,16 @@ from californiastateportal_sdk import CaliforniaStatePortalSDK
 client = CaliforniaStatePortalSDK()
 ```
 
-### 2. List services
+### 2. List service records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.service.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    services = client.Service().list({})
+    for service in services:
+        print(service)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = CaliforniaStatePortalSDK.test()
 
-result = client.service.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+service = client.Service().load({"id": "test01"})
+# service contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -226,7 +229,7 @@ API path: `/api/services`
 
 ### Service
 
-Create an instance: `const service = client.service`
+Create an instance: `service = client.Service()`
 
 #### Operations
 
@@ -248,8 +251,8 @@ Create an instance: `const service = client.service`
 
 #### Example: List
 
-```ts
-const services = await client.service.list()
+```python
+services = client.Service().list({})
 ```
 
 
@@ -323,7 +326,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-service = client.service
+service = client.Service()
 service.load({"id": "example_id"})
 
 # service.data_get() now returns the loaded service data

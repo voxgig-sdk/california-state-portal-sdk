@@ -233,10 +233,10 @@ class CaliforniaStatePortalSDK
 
     private $_service = null;
 
-    // Idiomatic facade: $client->service()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Service() (PHP method
-    // names are case-insensitive).
-    public function service($data = null)
+    // Canonical facade: $client->Service()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->service()
+    // resolves here too.
+    public function Service($data = null)
     {
         require_once __DIR__ . '/entity/service_entity.php';
         if ($data === null) {

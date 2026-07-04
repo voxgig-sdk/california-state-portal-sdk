@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## ServiceEntity
 
 ```lua
-local service = client:service(nil)
+local service = client:Service(nil)
 ```
 
 ### Fields
@@ -105,7 +105,7 @@ local service = client:service(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:service():list()
+local results, err = client:Service():list()
 ```
 
 ### Common Methods
