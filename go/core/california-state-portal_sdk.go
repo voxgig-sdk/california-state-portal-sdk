@@ -245,6 +245,9 @@ func (sdk *CaliforniaStatePortalSDK) Direct(fetchargs map[string]any) (map[strin
 }
 
 
+// Service returns a Service entity bound to this client.
+// Idiomatic usage: client.Service(nil).List(nil, nil) or
+// client.Service(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CaliforniaStatePortalSDK) Service(data map[string]any) CaliforniaStatePortalEntity {
 	return NewServiceEntityFunc(sdk, data)
 }

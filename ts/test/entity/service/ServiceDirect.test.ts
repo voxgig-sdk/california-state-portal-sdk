@@ -79,14 +79,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'CALIFORNIASTATEPORTAL_TEST_SERVICE_ENTID': {},
     'CALIFORNIASTATEPORTAL_TEST_LIVE': 'FALSE',
-    'CALIFORNIASTATEPORTAL_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.CALIFORNIASTATEPORTAL_TEST_LIVE
 
   if (live) {
     const client = new CaliforniaStatePortalSDK({
-      apikey: env.CALIFORNIASTATEPORTAL_APIKEY,
     })
 
     let idmap: any = env['CALIFORNIASTATEPORTAL_TEST_SERVICE_ENTID']

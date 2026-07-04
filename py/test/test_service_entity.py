@@ -50,8 +50,7 @@ class TestServiceEntity:
         service_ref01_ent = client.Service(None)
         service_ref01_match = {}
 
-        service_ref01_list_result, err = service_ref01_ent.list(service_ref01_match, None)
-        assert err is None
+        service_ref01_list_result = service_ref01_ent.list(service_ref01_match, None)
         assert isinstance(service_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _service_basic_setup(extra):
         "CALIFORNIASTATEPORTAL_TEST_SERVICE_ENTID": idmap,
         "CALIFORNIASTATEPORTAL_TEST_LIVE": "FALSE",
         "CALIFORNIASTATEPORTAL_TEST_EXPLAIN": "FALSE",
-        "CALIFORNIASTATEPORTAL_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _service_basic_setup(extra):
     if env.get("CALIFORNIASTATEPORTAL_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("CALIFORNIASTATEPORTAL_APIKEY"),
             },
             extra or {},
         ])

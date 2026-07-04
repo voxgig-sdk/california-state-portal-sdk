@@ -2,6 +2,8 @@
 
 import { ServiceEntity } from './entity/ServiceEntity'
 
+export type * from './CaliforniaStatePortalTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class CaliforniaStatePortalSDK {
 
 
 
+  _service?: ServiceEntity
+
+  // Idiomatic facade: `client.service.list()` / `client.service.load({ id })`.
+  get service(): ServiceEntity {
+    return (this._service ??= new ServiceEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.service` instead. */
   Service(data?: any) {
     const self = this
     return new ServiceEntity(self,data)

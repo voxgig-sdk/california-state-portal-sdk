@@ -9,12 +9,9 @@ The Lua SDK for the CaliforniaStatePortal API — an entity-oriented client usin
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-california-state-portal
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/california-state-portal-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("california-state-portal_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("CALIFORNIA-STATE-PORTAL_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List services
 
 ```lua
-local result, err = client:Service():list()
+local result, err = client:service():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -93,7 +88,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:CaliforniaStatePortal():load({ id = "test01" })
+local result, err = client:service():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -126,8 +121,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-CALIFORNIA-STATE-PORTAL_TEST_LIVE=TRUE
-CALIFORNIA-STATE-PORTAL_APIKEY=<your-key>
+CALIFORNIA_STATE_PORTAL_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -150,7 +144,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -233,7 +226,7 @@ API path: `/api/services`
 
 ### Service
 
-Create an instance: `const service = client.Service()`
+Create an instance: `const service = client.service`
 
 #### Operations
 
@@ -256,7 +249,7 @@ Create an instance: `const service = client.Service()`
 #### Example: List
 
 ```ts
-const services = await client.Service().list()
+const services = await client.service.list()
 ```
 
 
@@ -331,11 +324,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local service = client:service()
+service:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- service:data_get() now returns the loaded service data
+-- service:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

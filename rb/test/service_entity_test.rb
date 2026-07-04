@@ -43,8 +43,7 @@ class ServiceEntityTest < Minitest::Test
     service_ref01_ent = client.Service(nil)
     service_ref01_match = {}
 
-    service_ref01_list_result, err = service_ref01_ent.list(service_ref01_match, nil)
-    assert_nil err
+    service_ref01_list_result = service_ref01_ent.list(service_ref01_match, nil)
     assert service_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def service_basic_setup(extra)
     "CALIFORNIASTATEPORTAL_TEST_SERVICE_ENTID" => idmap,
     "CALIFORNIASTATEPORTAL_TEST_LIVE" => "FALSE",
     "CALIFORNIASTATEPORTAL_TEST_EXPLAIN" => "FALSE",
-    "CALIFORNIASTATEPORTAL_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def service_basic_setup(extra)
   if env["CALIFORNIASTATEPORTAL_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["CALIFORNIASTATEPORTAL_APIKEY"],
       },
       extra || {},
     ])

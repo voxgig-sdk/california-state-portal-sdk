@@ -20,9 +20,6 @@ class CaliforniaStatePortalConfig
             ],
             "options" => [
                 "base" => "https://www.ca.gov",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

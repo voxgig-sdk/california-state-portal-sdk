@@ -10,26 +10,24 @@ This is an unofficial SDK for the California State Portal public API, generated 
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/california-state-portal` | `npm install @voxgig-sdk/california-state-portal` |
-| Python | `voxgig-sdk-california-state-portal` | `pip install voxgig-sdk-california-state-portal` |
-| PHP | `voxgig-sdk/california-state-portal` | `composer require voxgig-sdk/california-state-portal` |
-| Golang | `github.com/voxgig-sdk/california-state-portal-sdk/go` | `go get github.com/voxgig-sdk/california-state-portal-sdk/go` |
-| Ruby | `voxgig-sdk-california-state-portal` | `gem install voxgig-sdk-california-state-portal` |
-| Lua | `voxgig-sdk-california-state-portal` | `luarocks install voxgig-sdk-california-state-portal` |
+| TypeScript | `@voxgig-sdk/california-state-portal` | publish pending — [install from git tag](https://github.com/voxgig-sdk/california-state-portal-sdk/releases) |
+| Python | `voxgig-sdk-california-state-portal` | publish pending — [install from git tag](https://github.com/voxgig-sdk/california-state-portal-sdk/releases) |
+| PHP | `voxgig-sdk/california-state-portal` | publish pending — [install from git tag](https://github.com/voxgig-sdk/california-state-portal-sdk/releases) |
+| Golang | `github.com/voxgig-sdk/california-state-portal-sdk/go` | `go get github.com/voxgig-sdk/california-state-portal-sdk/go@latest` |
+| Ruby | `voxgig-sdk-california-state-portal` | publish pending — [install from git tag](https://github.com/voxgig-sdk/california-state-portal-sdk/releases) |
+| Lua | `voxgig-sdk-california-state-portal` | publish pending — [install from git tag](https://github.com/voxgig-sdk/california-state-portal-sdk/releases) |
 
 ## Quickstart
 
 ### TypeScript
 
 ```ts
-import { CaliforniaStatePortalSDK } from 'california-state-portal'
+import { CaliforniaStatePortalSDK } from '@voxgig-sdk/california-state-portal'
 
-const client = new CaliforniaStatePortalSDK({
-  apikey: process.env.CALIFORNIA-STATE-PORTAL_APIKEY,
-})
+const client = new CaliforniaStatePortalSDK()
 
 // List all services
-const services = await client.Service().list()
+const services = await client.service.list()
 console.log(services.data)
 ```
 
@@ -71,7 +69,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Service** |  | `/api/services` |
+| **Service** | The Service entity (list). | `/api/services` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -81,15 +79,12 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
-import os
 from californiastateportal_sdk import CaliforniaStatePortalSDK
 
-client = CaliforniaStatePortalSDK({
-    "apikey": os.environ.get("CALIFORNIA-STATE-PORTAL_APIKEY"),
-})
+client = CaliforniaStatePortalSDK()
 
 # List all services
-services, err = client.Service().list()
+services = client.service.list()
 print(services)
 ```
 
@@ -99,12 +94,10 @@ print(services)
 <?php
 require_once 'californiastateportal_sdk.php';
 
-$client = new CaliforniaStatePortalSDK([
-    "apikey" => getenv("CALIFORNIA-STATE-PORTAL_APIKEY"),
-]);
+$client = new CaliforniaStatePortalSDK();
 
-// List all services
-[$services, $err] = $client->Service()->list();
+// List all services (throws on error)
+$services = $client->service()->list();
 print_r($services);
 ```
 
@@ -113,9 +106,7 @@ print_r($services);
 ```go
 import sdk "github.com/voxgig-sdk/california-state-portal-sdk/go"
 
-client := sdk.NewCaliforniaStatePortalSDK(map[string]any{
-    "apikey": os.Getenv("CALIFORNIA-STATE-PORTAL_APIKEY"),
-})
+client := sdk.New()
 
 // List all services
 services, err := client.Service(nil).List(nil, nil)
@@ -127,12 +118,10 @@ fmt.Println(services)
 ```ruby
 require_relative "CaliforniaStatePortal_sdk"
 
-client = CaliforniaStatePortalSDK.new({
-  "apikey" => ENV["CALIFORNIA-STATE-PORTAL_APIKEY"],
-})
+client = CaliforniaStatePortalSDK.new
 
 # List all services
-services, err = client.Service().list
+services = client.service.list
 puts services
 ```
 
@@ -141,12 +130,10 @@ puts services
 ```lua
 local sdk = require("california-state-portal_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("CALIFORNIA-STATE-PORTAL_APIKEY"),
-})
+local client = sdk.new()
 
 -- List all services
-local services, err = client:Service():list()
+local services, err = client:service():list()
 print(services)
 ```
 
@@ -159,7 +146,7 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = CaliforniaStatePortalSDK.test()
-const result = await client.Service().load({ id: 'test01' })
+const result = await client.service.load({ id: 'test01' })
 // result.ok === true, result.data contains mock data
 ```
 
@@ -167,14 +154,14 @@ const result = await client.Service().load({ id: 'test01' })
 
 ```python
 client = CaliforniaStatePortalSDK.test()
-result, err = client.Service().load({"id": "test01"})
+result = client.service.load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
 $client = CaliforniaStatePortalSDK::test();
-[$result, $err] = $client->Service()->load(["id" => "test01"]);
+$result = $client->service()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -190,14 +177,14 @@ result, err := client.Service(nil).Load(
 
 ```ruby
 client = CaliforniaStatePortalSDK.test
-result, err = client.Service().load({ "id" => "test01" })
+result = client.service.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Service():load({ id = "test01" })
+local result, err = client:service():load({ id = "test01" })
 ```
 
 ## How it works
@@ -250,7 +237,7 @@ console.log(result.data)
 
 **Python:**
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
@@ -259,7 +246,7 @@ result, err = client.direct({
 
 **PHP:**
 ```php
-[$result, $err] = $client->direct([
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
@@ -277,7 +264,7 @@ result, err := client.Direct(map[string]any{
 
 **Ruby:**
 ```ruby
-result, err = client.direct({
+result = client.direct({
   "path" => "/api/resource/{id}",
   "method" => "GET",
   "params" => { "id" => "example" },

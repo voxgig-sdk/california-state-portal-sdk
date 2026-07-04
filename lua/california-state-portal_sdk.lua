@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:service():list() / client:service():load({ id = ... })
+function CaliforniaStatePortalSDK:service(data)
+  local EntityMod = require("entity.service_entity")
+  if data == nil then
+    if self._service == nil then
+      self._service = EntityMod.new(self, nil)
+    end
+    return self._service
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:service() instead.
 function CaliforniaStatePortalSDK:Service(data)
   local EntityMod = require("entity.service_entity")
   return EntityMod.new(self, data)

@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       contact: {
         name: "California State Portal"
         url: "https://www.ca.gov/"
