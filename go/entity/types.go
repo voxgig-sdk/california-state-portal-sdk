@@ -19,8 +19,7 @@ type Service struct {
 	Url *string `json:"url,omitempty"`
 }
 
-// ServiceListMatch mirrors the service fields as an all-optional match
-// filter (Go analog of Partial<Service>).
+// ServiceListMatch is the typed request payload for Service.ListTyped.
 type ServiceListMatch struct {
 	Category *string `json:"category,omitempty"`
 	Department *string `json:"department,omitempty"`

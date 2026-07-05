@@ -41,7 +41,7 @@ Service = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Service#list (any subset of Service fields).
+# Request payload for Service#list.
 #
 # @!attribute [rw] category
 #   @return [String, nil]

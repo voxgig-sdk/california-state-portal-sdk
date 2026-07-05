@@ -16,6 +16,13 @@
 ---@field url? string
 
 ---@class ServiceListMatch
+---@field category? string
+---@field department? string
+---@field description? string
+---@field id? string
+---@field name? string
+---@field popular? boolean
+---@field url? string
 
 local M = {}
 

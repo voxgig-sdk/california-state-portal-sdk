@@ -15,5 +15,13 @@ export interface Service {
   url?: string
 }
 
-export type ServiceListMatch = Partial<Service>
+export interface ServiceListMatch {
+  category?: string
+  department?: string
+  description?: string
+  id?: string
+  name?: string
+  popular?: boolean
+  url?: string
+}
 

@@ -90,13 +90,13 @@ local service = client:Service(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | No |  |
-| `department` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `popular` | ``$BOOLEAN`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `category` | `string` | No |  |
+| `department` | `string` | No |  |
+| `description` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `popular` | `boolean` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 

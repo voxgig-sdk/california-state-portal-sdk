@@ -8,7 +8,7 @@ Complete API reference for the CaliforniaStatePortal Python SDK.
 ### Constructor
 
 ```python
-from california-state-portal_sdk import CaliforniaStatePortalSDK
+from californiastateportal_sdk import CaliforniaStatePortalSDK
 
 client = CaliforniaStatePortalSDK(options)
 ```
@@ -87,22 +87,22 @@ service = client.Service()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | No |  |
-| `department` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `popular` | ``$BOOLEAN`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `category` | `str` | No |  |
+| `department` | `str` | No |  |
+| `description` | `str` | No |  |
+| `id` | `str` | No |  |
+| `name` | `str` | No |  |
+| `popular` | `bool` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Service().list({})
+results = client.Service().list()
 for service in results:
     print(service)
 ```

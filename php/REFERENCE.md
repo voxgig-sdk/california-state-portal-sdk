@@ -8,7 +8,7 @@ Complete API reference for the CaliforniaStatePortal PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/california-state-portal_sdk.php';
+require_once __DIR__ . '/californiastateportal_sdk.php';
 
 $client = new CaliforniaStatePortalSDK($options);
 ```
@@ -45,11 +45,11 @@ $client = CaliforniaStatePortalSDK::test();
 
 Create a new `ServiceEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): CaliforniaStatePortalUtility`
 
 Return a copy of the SDK utility object.
 
@@ -92,39 +92,39 @@ $service = $client->Service();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | No |  |
-| `department` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `popular` | ``$BOOLEAN`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `category` | `string` | No |  |
+| `department` | `string` | No |  |
+| `description` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `popular` | `bool` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Service()->list([]);
+$results = $client->Service()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -133,7 +133,7 @@ Set the entity match criteria.
 Create a new `ServiceEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

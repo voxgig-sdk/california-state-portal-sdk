@@ -24,7 +24,7 @@ class Service
     public ?string $url = null;
 }
 
-/** Match filter for Service#list (any subset of Service fields). */
+/** Request payload for Service#list. */
 class ServiceListMatch
 {
     public ?string $category = null;

@@ -8,7 +8,7 @@ Complete API reference for the CaliforniaStatePortal Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'california-state-portal_sdk'
+require_relative 'CaliforniaStatePortal_sdk'
 
 client = CaliforniaStatePortalSDK.new(options)
 ```
@@ -93,22 +93,22 @@ service = client.Service
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | No |  |
-| `department` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `popular` | ``$BOOLEAN`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `category` | `String` | No |  |
+| `department` | `String` | No |  |
+| `description` | `String` | No |  |
+| `id` | `String` | No |  |
+| `name` | `String` | No |  |
+| `popular` | `Boolean` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Service.list(nil)
+results = client.Service.list
 ```
 
 ### Common Methods

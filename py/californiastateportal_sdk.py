@@ -221,7 +221,7 @@ class CaliforniaStatePortalSDK:
 
 
     def Service(self, data=None) -> "ServiceEntity":
-        """Entity factory: client.Service().list({}) / client.Service().load({"id": ...})."""
+        """Entity factory: client.Service().list() / client.Service().load({"id": ...})."""
         from entity.service_entity import ServiceEntity
         return ServiceEntity(self, data)
 
