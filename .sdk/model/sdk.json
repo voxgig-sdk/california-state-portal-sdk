@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -270,14 +267,17 @@
           "name": "State of California",
           "url": "https://www.ca.gov/"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "California State Portal Production Server",
             "url": "https://www.ca.gov"
           }
         ],
+        "summary": "CA.gov serves as the official website for the State of California, providing access to various government services and resources for residents and visitors.",
         "title": "California State Portal API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://ca.gov"
       },
       "option": {},
       "target": {
@@ -330,6 +330,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -380,6 +383,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

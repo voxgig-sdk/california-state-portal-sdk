@@ -20,9 +20,9 @@ main: {
           url: "https://www.ca.gov"
         }
       ]
+      summary: "CA.gov serves as the official website for the State of California, providing access to various government services and resources for residents and visitors."
       title: "California State Portal API"
       version: "1.0.0"
+      website: "https://ca.gov"
     }
   }
-}
-
