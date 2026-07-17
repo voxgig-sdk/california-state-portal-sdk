@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- CaliforniaStatePortal SDK exists test
 
 local sdk = require("california-state-portal_sdk")
 
